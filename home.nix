@@ -11,7 +11,7 @@ in
   ## BASIC SETTINGS
   home.username = "jamief";
   home.homeDirectory = "/home/jamief";
-  home.stateVersion="26.05"
+  home.stateVersion="26.05";
 
   ## SYMLINKING DOTFILES
   home.file = {

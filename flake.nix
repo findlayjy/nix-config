@@ -17,7 +17,7 @@
   outputs = { self, nixpkgs, home-manager, spicetify-nix }: {
     homeConfigurations."jamief" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      extraSpecialArgs = { inherit spicetify-nix };
+      extraSpecialArgs = { inherit spicetify-nix; };
       modules = [ ./home.nix ];
     };
   };
