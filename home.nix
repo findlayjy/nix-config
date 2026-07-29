@@ -13,6 +13,10 @@ in
   home.homeDirectory = "/home/jamief";
   home.stateVersion="26.05";
 
+  ## Setting zsh as the default shell
+  programs.zsh.enable = true;
+  users.users.jamief.shell = pkgs.zsh;
+  
   ## SYMLINKING DOTFILES
   home.file = {
     ".zshrc".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.zshrc;
@@ -50,7 +54,7 @@ in
   ## USER PACKAGES
   # List of packages without their own modules
   home.packages = with pkgs; [
-    zsh
+    # zsh
     vim
     alacritty
     git
