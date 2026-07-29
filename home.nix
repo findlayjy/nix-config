@@ -23,10 +23,6 @@ in
     ".dir_colors".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.dir_colors;
     ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/alacritty;
     ".config/cosmic".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/cosmic; # Config for COSMIC DE – comment out/delete if using another DE
-    ".config/cosmic" = {
-      source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/cosmic;
-      force = true;
-    };
   };
 
   # Setting some default applications
