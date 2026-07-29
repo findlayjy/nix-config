@@ -50,6 +50,7 @@ in
   ## USER PACKAGES
   # List of packages without their own modules
   home.packages = with pkgs; [
+    zsh
     vim
     alacritty
     git
