@@ -7,7 +7,10 @@ in
   imports = [
 	  spicetify-nix.homeManagerModules.default
   ];
-  
+ 
+  # Install Home Manager
+  programs.home-manager.enable = true;
+ 
   ## BASIC SETTINGS
   home.username = "jamief";
   home.homeDirectory = "/home/jamief";
