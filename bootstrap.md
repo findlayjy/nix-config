@@ -1,8 +1,6 @@
 # Nix/Home Manager setup
 
-Steps to get my home environemnt feeling familiar using Nix and Home Manager on another OS (e.g. Pop!\_OS).
-
----
+Steps to get my home environment feeling familiar using Nix and Home Manager on another OS (e.g. Pop!\_OS).
 
 ## 1. Install the OS via the installer
 
