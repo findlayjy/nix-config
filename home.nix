@@ -95,6 +95,7 @@ in
   # Extensions for Chromium browsers like Brave (IDs from Chrome Web Store URL)
   programs.chromium = {
     enable = true;
+	package = pkgs.brave;
     extensions = [
       "fdjamakpfbbddfjaooikfcpapjohcfmg" # Dashlane
       "aapbdbdomjkkjkaonfhkkikfgjllcleb" # Google Translate
