@@ -10,7 +10,10 @@ in
  
   # Install Home Manager
   programs.home-manager.enable = true;
- 
+
+  # Allow access to the GPU (needs to be changed for NVidia: https://nix-community.github.io/home-manager/usage/gpu-non-nixos.html#sec-usage-gpu-non-nixos)
+  targets.genericLinux.enable = true;
+
   ## BASIC SETTINGS
   home.username = "jamief";
   home.homeDirectory = "/home/jamief";
@@ -53,7 +56,7 @@ in
   ## USER PACKAGES
   # List of packages without their own modules or where I'm not using the config options of the module
   home.packages = with pkgs; [
-    zsh
+	zsh
     vim
     alacritty
     git
