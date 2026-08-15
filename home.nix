@@ -77,6 +77,7 @@ in
     haskellPackages.hoogle
     haskell-language-server
     ## Doom emacs requirements
+    emacs-pgtk
     fd
     ripgrep
     pandoc                     # for markdown compiling
