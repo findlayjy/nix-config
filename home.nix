@@ -59,6 +59,7 @@ in
 	zsh
     vim
     alacritty
+    xclip
     git
     wl-clipboard
     tree
