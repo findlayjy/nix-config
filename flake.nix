@@ -14,14 +14,25 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, spicetify-nix }: {
-    homeConfigurations."jamief" = home-manager.lib.homeManagerConfiguration {
+  outputs = { self, nixpkgs, home-manager, spicetify-nix }:
+    # Helper function for building the same home environment but with or without nvidia GPU
+    let
+      mkHome = { nvidia ? false }: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
-            system = "x86_64-linux";
-            config.allowUnfree = true;
-            };
-      extraSpecialArgs = { inherit spicetify-nix; };
-      modules = [ ./home.nix ];
+          system = "x86_64-linux";
+          config = {
+            allowUnfree = true;
+          } // (if nvidia then { nvidia.acceptLicense = true; } else {});
+        };
+        extraSpecialArgs = { inherit spicetify-nix; };
+        modules = [ ./home.nix ] ++ (if nvidia then [ ./nvidia.nix ] else []);
+      };
+    in
+    {
+      homeConfigurations = {
+        vm = mkHome { };
+        laptop = mkHome { };
+        pc = mkHome { nvidia = true; };
+      };
     };
-  };
 }

@@ -11,7 +11,7 @@ in
   # Install Home Manager
   programs.home-manager.enable = true;
 
-  # Allow access to the GPU (needs to be changed for NVidia: https://nix-community.github.io/home-manager/usage/gpu-non-nixos.html#sec-usage-gpu-non-nixos)
+  # Allow access to the GPU (needs to be expanded for NVidia: https://nix-community.github.io/home-manager/usage/gpu-non-nixos.html#sec-usage-gpu-non-nixos)
   targets.genericLinux.enable = true;
 
   ## BASIC SETTINGS
