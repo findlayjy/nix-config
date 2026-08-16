@@ -30,7 +30,6 @@
     in
     {
       homeConfigurations = {
-        vm = mkHome { };
         laptop = mkHome { };
         pc = mkHome { nvidia = true; };
       };
