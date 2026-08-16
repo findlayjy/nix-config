@@ -19,8 +19,9 @@ in
   home.homeDirectory = "/home/jamief";
   home.stateVersion="26.05";
 
-  ## SYMLINKING DOTFILES
+  ## SYMLINKS
   home.file = {
+    ### Dotfiles ###
     ".zshrc".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.zshrc;
     ".zshenv".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.zshenv;
     ".zsh".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.zsh;
@@ -29,6 +30,9 @@ in
     ".dir_colors".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.dir_colors;
     ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/alacritty;
     ".config/cosmic".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/cosmic; # Config for COSMIC DE – comment out/delete if using another DE
+    ### AppImages ###
+    ".local/bin/whatsapp.AppImage".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/nix-config/appimages/whatsapp/whatsapp.AppImage;
+    ".local/share/whatsapp/whatsapp.ico".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/nix-config/appimages/whatsapp/whatsapp.ico;
   };
 
   # Setting some default applications
@@ -64,9 +68,8 @@ in
     wl-clipboard
     tree
     tldr
-    brave
+    #brave
     discord
-    whatsapp-electron
     libreoffice
     # texliveFull
     ## Python
@@ -99,7 +102,7 @@ in
   # Extensions for Chromium browsers like Brave (IDs from Chrome Web Store URL)
   programs.chromium = {
     enable = true;
-	  package = pkgs.brave;
+    package = pkgs.brave;
     extensions = [
       "fdjamakpfbbddfjaooikfcpapjohcfmg" # Dashlane
       "aapbdbdomjkkjkaonfhkkikfgjllcleb" # Google Translate
@@ -143,4 +146,18 @@ in
     colorScheme = "Nord";
   };
 
+  # Desktop entries
+  xdg.desktopEntries = {
+    whatsapp = {
+      name = "WhatsApp";
+      type = "Application";
+      exec = "/home/jamief/.local/bin/whatsapp.AppImage";
+      icon = "/home/jamief/.local/share/whatsapp/whatsapp.ico";
+      terminal = false;
+      categories = [ "Network" "InstantMessaging" ];
+      settings = {
+        StartupWMClass = "whatsapp-desktop-linux";
+      };
+    };
+  };
 }
