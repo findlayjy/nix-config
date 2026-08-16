@@ -6,6 +6,12 @@ Steps to get my home environment feeling familiar using Nix and Home Manager on 
 
 Set up timezone, keyboard format, username (`jamief`), etc.
 
+Set the hostname according to the profiles in `home.nix`:
+
+``` bash
+sudo hostnamectl set-hostname <host-name>     # replace <host-name> with e.g. "pc" on the PC
+```
+
 ## 2. Set up git identity
 
 ```bash
