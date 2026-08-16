@@ -31,8 +31,8 @@ in
     ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/alacritty;
     ".config/cosmic".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/cosmic; # Config for COSMIC DE – comment out/delete if using another DE
     ### AppImages ###
-    ".local/bin/whatsapp.AppImage".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/nix-config/appimages/whatsapp/whatsapp.AppImage;
-    ".local/share/whatsapp/whatsapp.ico".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/nix-config/appimages/whatsapp/whatsapp.ico;
+    ".local/bin/whatsapp.AppImage".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/Dropbox/appimages/whatsapp/whatsapp.AppImage;
+    ".local/share/whatsapp/whatsapp.ico".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/Dropbox/appimages/whatsapp/whatsapp.ico;
   };
 
   # Setting some default applications
