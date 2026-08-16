@@ -7,7 +7,7 @@ in
   imports = [
 	  spicetify-nix.homeManagerModules.default
   ];
- 
+
   # Install Home Manager
   programs.home-manager.enable = true;
 
@@ -56,7 +56,7 @@ in
   ## USER PACKAGES
   # List of packages without their own modules or where I'm not using the config options of the module
   home.packages = with pkgs; [
-	zsh
+	  zsh
     vim
     alacritty
     xclip
@@ -66,6 +66,8 @@ in
     tldr
     brave
     discord
+    whatsapp-electron
+    libreoffice
     # texliveFull
     ## Python
     python3
@@ -97,7 +99,7 @@ in
   # Extensions for Chromium browsers like Brave (IDs from Chrome Web Store URL)
   programs.chromium = {
     enable = true;
-	package = pkgs.brave;
+	  package = pkgs.brave;
     extensions = [
       "fdjamakpfbbddfjaooikfcpapjohcfmg" # Dashlane
       "aapbdbdomjkkjkaonfhkkikfgjllcleb" # Google Translate
