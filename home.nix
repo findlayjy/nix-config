@@ -73,6 +73,7 @@ in
     libreoffice
     texliveFull
     # dropbox
+    albert
     ## Python
     python3
     python3Packages.isort
