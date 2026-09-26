@@ -88,7 +88,7 @@ in
     ripgrep
     pandoc                     # for markdown compiling
     shellcheck
-    grip
+    #grip                      # deprecated
     nixfmt                     # formatting for nix
     zig                        # for building ghostel
     ## Fonts
@@ -140,7 +140,7 @@ in
       shuffle
       hidePodcasts
       popupLyrics
-      betterGenres
+      #betterGenres # deprecated?
     ];
     theme = spicePkgs.themes.sleek;
     colorScheme = "Nord";
