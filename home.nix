@@ -60,7 +60,7 @@ in
   ## USER PACKAGES
   # List of packages without their own modules or where I'm not using the config options of the module
   home.packages = with pkgs; [
-	  zsh
+    zsh
     vim
     alacritty
     xclip
@@ -125,6 +125,40 @@ in
     enable = true;
     package = pkgs.emacs-pgtk;
     defaultEditor = true;
+  };
+
+  # Temporary desktop entry because of COSMIC bug not throwing away %F: https://github.com/pop-os/cosmic-launcher/issues/461
+  xdg.desktopEntries.emacsclient = {
+    name = "Emacs (Client)";
+    genericName = "Text Editor";
+    comment = "Edit text";
+    exec = "emacsclient --alternate-editor= --create-frame --no-wait %F";
+    icon = "emacs";
+    terminal = false;
+    categories = [ "Development" "TextEditor" ];
+    startupNotify = true;
+    settings = {
+      StartupWMClass = "Emacs";
+      Keywords = "emacsclient;";
+    };
+    mimeType = [
+      "text/english"
+      "text/plain"
+      "text/x-makefile"
+      "text/x-c++hdr"
+      "text/x-c++src"
+      "text/x-chdr"
+      "text/x-csrc"
+      "text/x-java"
+      "text/x-moc"
+      "text/x-pascal"
+      "text/x-tcl"
+      "text/x-tex"
+      "application/x-shellscript"
+      "text/x-c"
+      "text/x-c++"
+      "x-scheme-handler/org-protocol"
+    ];
   };
 
   # Firefox
