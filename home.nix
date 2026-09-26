@@ -29,6 +29,7 @@ in
     ".latexmkrc".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.latexmkrc;
     ".dir_colors".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.dir_colors;
     ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/alacritty;
+    ".config/albert".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/albert;
     ".config/cosmic".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/cosmic; # Config for COSMIC DE – comment out/delete if using another DE
     ### AppImages ###
     ".local/bin/whatsapp.AppImage".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/Dropbox/appimages/whatsapp/whatsapp.AppImage;
@@ -74,6 +75,7 @@ in
     texliveFull
     # dropbox
     albert
+    omnissa-horizon-client
     ## Python
     python3
     python3Packages.isort
