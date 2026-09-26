@@ -72,7 +72,7 @@ in
     discord
     libreoffice
     texliveFull
-    dropbox
+    # dropbox
     ## Python
     python3
     python3Packages.isort
