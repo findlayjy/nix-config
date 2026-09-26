@@ -68,10 +68,11 @@ in
     wl-clipboard
     tree
     tldr
-    #brave
+    # brave                   # loaded via module below
     discord
     libreoffice
-    # texliveFull
+    texliveFull
+    dropbox
     ## Python
     python3
     python3Packages.isort
@@ -83,7 +84,7 @@ in
     haskellPackages.hoogle
     haskell-language-server
     ## Doom emacs requirements
-    emacs-pgtk
+    emacs-pgtk                 # native Wayland version 
     fd
     ripgrep
     pandoc                     # for markdown compiling
@@ -165,7 +166,7 @@ in
   programs.firefox.enable = true;
 
   # Install Dropbox and run the daemon
-  services.dropbox.enable = true;
+  # services.dropbox.enable = true;
 
   # Install and prettify Spotify
   programs.spicetify = {
