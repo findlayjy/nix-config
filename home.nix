@@ -77,6 +77,7 @@ in
     # dropbox                 # managing locally
     # albert                  # switching to cosmic-launcher
     omnissa-horizon-client
+    papers                    # Gnome Papers PDF viewer
     ## Python
     python3
     python3Packages.isort
