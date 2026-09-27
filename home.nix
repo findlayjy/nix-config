@@ -103,6 +103,12 @@ in
     source-sans
   ];
 
+  # Fix for Albert autostart not working
+  xdg.configFile."autostart/albert.desktop".text = '' [Desktop Entry]
+  Type=Application Name=Albert Comment=A desktop agnostic launcher Exec=albert
+  Icon=albert Categories=Utility; StartupNotify=false X-GNOME-Autostart-Delay=3
+  '';
+
   # Extensions for Chromium browsers like Brave (IDs from Chrome Web Store URL)
   programs.chromium = {
     enable = true;
