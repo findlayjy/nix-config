@@ -72,8 +72,8 @@ in
     # brave                   # loaded via module below
     discord
     libreoffice
-    # texliveFull
-    perlPackages.LinuxInotify2   # Allows latexmk to use inotify to check files faster
+    texliveFull
+    # perlPackages.LinuxInotify2   # Allows latexmk to use inotify to check files faster
     # dropbox                 # managing locally
     # albert                  # switching to cosmic-launcher
     omnissa-horizon-client
