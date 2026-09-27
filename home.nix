@@ -72,7 +72,7 @@ in
     # brave                   # loaded via module below
     discord
     libreoffice
-    texliveFull
+    # texliveFull
     # dropbox
     albert
     omnissa-horizon-client
