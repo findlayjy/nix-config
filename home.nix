@@ -73,8 +73,9 @@ in
     discord
     libreoffice
     # texliveFull
-    # dropbox
-    albert
+    perlPackages.LinuxInotify2   # Allows latexmk to use inotify to check files faster
+    # dropbox                 # managing locally
+    # albert                  # switching to cosmic-launcher
     omnissa-horizon-client
     ## Python
     python3
@@ -102,12 +103,6 @@ in
     symbola
     source-sans
   ];
-
-  # Fix for Albert autostart not working
-  xdg.configFile."autostart/albert.desktop".text = '' [Desktop Entry]
-  Type=Application Name=Albert Comment=A desktop agnostic launcher Exec=albert
-  Icon=albert Categories=Utility; StartupNotify=false X-GNOME-Autostart-Delay=3
-  '';
 
   # Extensions for Chromium browsers like Brave (IDs from Chrome Web Store URL)
   programs.chromium = {
