@@ -1,7 +1,31 @@
 { config, pkgs, spicetify-nix, ... }:
 
 let
-  spicePkgs = spicetify-nix.l  ".vimrc".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.vimrc;
+  spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+in
+{
+  imports = [
+	  spicetify-nix.homeManagerModules.default
+  ];
+
+  # Install Home Manager
+  programs.home-manager.enable = true;
+
+  # Allow access to the GPU (needs to be expanded for NVidia: https://nix-community.github.io/home-manager/usage/gpu-non-nixos.html#sec-usage-gpu-non-nixos)
+  targets.genericLinux.enable = true;
+
+  ## BASIC SETTINGS
+  home.username = "jamief";
+  home.homeDirectory = "/home/jamief";
+  home.stateVersion="26.05";
+
+  ## SYMLINKS
+  home.file = {
+    ### Dotfiles ###
+    ".zshrc".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.zshrc;
+    ".zshenv".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.zshenv;
+    ".zsh".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.zsh;
+    ".vimrc".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.vimrc;
     ".latexmkrc".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.latexmkrc;
     ".dir_colors".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.dir_colors;
     ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/alacritty;
