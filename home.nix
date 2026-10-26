@@ -52,6 +52,8 @@ in
       "application/x-extension-xhtml" = "brave-browser.desktop";
       "application/x-extension-xht" = "brave-browser.desktop";
       "x-scheme-handler/about" = "brave-browser.desktop";
+      "text/plain" = "emacsclient.desktop";
+      "text/x-tex" = "emacsclient.desktop";
     };
   };
 
