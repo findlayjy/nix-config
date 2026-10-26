@@ -69,6 +69,8 @@ in
     wl-clipboard
     tree
     tldr
+    nh                        # nix wrapper
+    comma                     # launch sandboxed nix programs
     # brave                   # loaded via module below
     discord
     libreoffice
