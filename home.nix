@@ -69,7 +69,6 @@ in
     wl-clipboard
     tree
     tldr
-    nh                        # nix wrapper
     comma                     # launch sandboxed nix programs
     # brave                   # loaded via module below
     discord
@@ -167,6 +166,13 @@ in
       "text/x-c++"
       "x-scheme-handler/org-protocol"
     ];
+  };
+
+  # nix helper
+  programs.nh = {
+    enable = true;
+    flake = "/home/jamief/nix-config/";
+    clean.enable = true;
   };
 
   # Firefox
