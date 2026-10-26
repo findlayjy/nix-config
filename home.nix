@@ -188,7 +188,6 @@ in
     Exec=${config.programs.emacs.finalPackage}/bin/emacs --daemon
     NoDisplay=true
   '';
-}
 
   # nix helper
   programs.nh = {
