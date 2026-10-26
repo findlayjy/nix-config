@@ -94,7 +94,7 @@ in
     haskellPackages.hoogle
     haskell-language-server
     ## Doom emacs requirements
-    emacs-pgtk                 # native Wayland version 
+    # emacs-pgtk                 # native Wayland version
     fd
     ripgrep
     pandoc                     # for markdown compiling
@@ -132,45 +132,63 @@ in
   };
 
   # Emacs
-  services.emacs = {
+  programs.emacs = {
     enable = true;
     package = pkgs.emacs-pgtk;
-    defaultEditor = true;
+  };
+  # services.emacs = {
+  #   enable = true;
+  #   package = pkgs.emacs-pgtk;
+  #   defaultEditor = true;
+  # };
+
+  home.sessionVariables = {
+    EDITOR = "emacsclient -t -a ''";
+    VISUAL = "emacsclient -c -a ''";
   };
 
-  # Temporary desktop entry because of COSMIC bug not throwing away %F: https://github.com/pop-os/cosmic-launcher/issues/461
-  xdg.desktopEntries.emacsclient = {
-    name = "Emacs (Client)";
-    genericName = "Text Editor";
-    comment = "Edit text";
-    exec = "emacsclient --alternate-editor= --create-frame --no-wait %F";
-    icon = "emacs";
-    terminal = false;
-    categories = [ "Development" "TextEditor" ];
-    startupNotify = true;
-    settings = {
-      StartupWMClass = "Emacs";
-      Keywords = "emacsclient;";
-    };
-    mimeType = [
-      "text/english"
-      "text/plain"
-      "text/x-makefile"
-      "text/x-c++hdr"
-      "text/x-c++src"
-      "text/x-chdr"
-      "text/x-csrc"
-      "text/x-java"
-      "text/x-moc"
-      "text/x-pascal"
-      "text/x-tcl"
-      "text/x-tex"
-      "application/x-shellscript"
-      "text/x-c"
-      "text/x-c++"
-      "x-scheme-handler/org-protocol"
-    ];
-  };
+  # # Temporary desktop entry because of COSMIC bug not throwing away %F: https://github.com/pop-os/cosmic-launcher/issues/461
+  # xdg.desktopEntries.emacsclient = {
+  #   name = "Emacs (Client)";
+  #   genericName = "Text Editor";
+  #   comment = "Edit text";
+  #   exec = "emacsclient --alternate-editor= --create-frame --no-wait %F";
+  #   icon = "emacs";
+  #   terminal = false;
+  #   categories = [ "Development" "TextEditor" ];
+  #   startupNotify = true;
+  #   settings = {
+  #     StartupWMClass = "Emacs";
+  #     Keywords = "emacsclient;";
+  #   };
+  #   mimeType = [
+  #     "text/english"
+  #     "text/plain"
+  #     "text/x-makefile"
+  #     "text/x-c++hdr"
+  #     "text/x-c++src"
+  #     "text/x-chdr"
+  #     "text/x-csrc"
+  #     "text/x-java"
+  #     "text/x-moc"
+  #     "text/x-pascal"
+  #     "text/x-tcl"
+  #     "text/x-tex"
+  #     "application/x-shellscript"
+  #     "text/x-c"
+  #     "text/x-c++"
+  #     "x-scheme-handler/org-protocol"
+  #   ];
+  # };
+
+    xdg.configFile."autostart/emacs-daemon.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=Emacs daemon
+    Exec=${config.programs.emacs.finalPackage}/bin/emacs --daemon
+    NoDisplay=true
+  '';
+}
 
   # nix helper
   programs.nh = {
