@@ -74,6 +74,7 @@ in
     discord
     libreoffice
     texliveFull
+    fastfetch
     # perlPackages.LinuxInotify2   # Allows latexmk to use inotify to check files faster
     # dropbox                 # managing locally
     # albert                  # switching to cosmic-launcher
