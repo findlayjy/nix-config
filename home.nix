@@ -79,6 +79,7 @@ in
     texliveFull
     fastfetch
     pdfpc                     # presenter mode/toolkit for PDF slides
+    superfile                 # amodern Ranger-like
     # perlPackages.LinuxInotify2   # Allows latexmk to use inotify to check files faster
     # dropbox                 # managing locally
     # albert                  # switching to cosmic-launcher
@@ -182,7 +183,7 @@ in
   #   ];
   # };
 
-    xdg.configFile."autostart/emacs-daemon.desktop".text = ''
+  xdg.configFile."autostart/emacs-daemon.desktop".text = ''
     [Desktop Entry]
     Type=Application
     Name=Emacs daemon
