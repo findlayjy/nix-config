@@ -54,6 +54,7 @@ in
       "x-scheme-handler/about" = "brave-browser.desktop";
       "text/plain" = "emacsclient.desktop";
       "text/x-tex" = "emacsclient.desktop";
+      "text/x-bibtex" = "emacsclient.desktop";
     };
   };
 
