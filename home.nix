@@ -194,15 +194,17 @@ in
   '';
 
   # Adding a user desktop file that makes emacsclient clickable on the dock, rather than it running a new emacs instance entirely
-  xdg.desktopEntries.emacs = {
-    name = "Emacs (Client)";
-    icon = "emacs";
-    exec = ''emacsclient -c -a "" %F'';
-    terminal = false;
-    categories = [ "Development" "TextEditor" ];
-    mimeType = [ "text/plain" "text/x-tex" "text/x-bibtex"];
-    settings.StartupWMClass = "Emacs";
-  };
+  xdg.dataFile."applications/emacs.desktop".text = ''
+                                                 [Desktop Entry]
+                                                   Type=Application
+                                                     Name=Emacs
+                                                       Icon=emacs
+                                                         Exec=emacsclient -c -a "" %F
+                                                           Terminal=false
+  Categories=Development;TextEditor;
+  MimeType=text/plain;
+  StartupWMClass=Emacs
+'';
 
   # nix helper
   programs.nh = {
