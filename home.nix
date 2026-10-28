@@ -80,7 +80,6 @@ in
     fastfetch
     pdfpc                     # presenter mode/toolkit for PDF slides
     superfile                 # amodern Ranger-like
-    zoom-us                   # Zoom teleconferencing
     # perlPackages.LinuxInotify2   # Allows latexmk to use inotify to check files faster
     # dropbox                 # managing locally
     # albert                  # switching to cosmic-launcher
