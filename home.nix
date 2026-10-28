@@ -183,6 +183,8 @@ in
   #   ];
   # };
 
+  # Starting the emacs daemon on login, rather than using a systemd service, which seems to cause problems with window styling.
+  # TODO check this is still the case now we are properly importing home-manager session variables
   xdg.configFile."autostart/emacs-daemon.desktop".text = ''
     [Desktop Entry]
     Type=Application
@@ -190,6 +192,17 @@ in
     Exec=${config.programs.emacs.finalPackage}/bin/emacs --daemon
     NoDisplay=true
   '';
+
+  # Adding a user desktop file that makes emacsclient clickable on the dock, rather than it running a new emacs instance entirely
+  xdg.desktopEntries.emacs = {
+    name = "Emacs (Client)";
+    icon = "emacs";
+    exec = ''emacsclient -c -a "" %F'';
+    terminal = false;
+    categories = [ "Development" "TextEditor" ];
+    mimeType = [ "text/plain" "text/x-tex" "text/x-bibtex"];
+    settings.StartupWMClass = "Emacs";
+  };
 
   # nix helper
   programs.nh = {
