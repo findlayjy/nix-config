@@ -82,7 +82,7 @@ in
     superfile                 # amodern Ranger-like
     # perlPackages.LinuxInotify2   # Allows latexmk to use inotify to check files faster
     # dropbox                 # managing locally
-    # albert                  # switching to cosmic-launcher
+    albert                  # switching to cosmic-launcher
     omnissa-horizon-client
     # papers                    # Gnome Papers PDF viewer
     ## Python
