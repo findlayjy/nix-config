@@ -95,7 +95,7 @@ in
     haskellPackages.hoogle
     haskell-language-server
     ## Doom emacs requirements
-    # emacs-pgtk                 # native Wayland version
+    emacs-pgtk                 # native Wayland version
     fd
     ripgrep
     pandoc                     # for markdown compiling
@@ -133,10 +133,10 @@ in
   };
 
   # Emacs
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacs-pgtk;
-  };
+  # programs.emacs = {
+  #   enable = true;
+  #   package = pkgs.emacs-pgtk;
+  # };
   # services.emacs = {
   #   enable = true;
   #   package = pkgs.emacs-pgtk;
@@ -193,7 +193,7 @@ in
     NoDisplay=true
   '';
 
-  # Adding a user desktop file that makes emacsclient clickable on the dock, rather than it running a new emacs instance entirely
+  # Adding a user desktop file that makes emacsclient clickable on the dock and keeps emacs windows under it
   xdg.dataFile."applications/emacs.desktop".text = ''
     [Desktop Entry]
     Type=Application
