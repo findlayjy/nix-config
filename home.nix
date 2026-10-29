@@ -188,22 +188,22 @@ in
     [Desktop Entry]
     Type=Application
     Name=Emacs daemon
+    Icon=emacs
     Exec=${config.programs.emacs.finalPackage}/bin/emacs --daemon
     NoDisplay=true
   '';
 
   # Adding a user desktop file that makes emacsclient clickable on the dock, rather than it running a new emacs instance entirely
-  # TODO not working
   xdg.dataFile."applications/emacs.desktop".text = ''
-                                                 [Desktop Entry]
-                                                   Type=Application
-                                                     Name=Emacs
-                                                       Icon=emacs
-                                                         Exec=emacsclient -c -a "" %F
-                                                           Terminal=false
-  Categories=Development;TextEditor;
-  MimeType=text/plain;
-  StartupWMClass=Emacs
+    [Desktop Entry]
+    Type=Application
+    Name=Emacs (Client)
+    Icon=emacs
+    Exec=emacsclient -c -a "" %F
+    Terminal=false
+    Categories=Development;TextEditor;
+    MimeType=text/plain;
+    StartupWMClass=Emacs
 '';
 
   # nix helper
