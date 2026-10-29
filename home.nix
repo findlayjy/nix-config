@@ -189,7 +189,7 @@ in
     Type=Application
     Name=Emacs daemon
     Icon=emacs
-    Exec=${config.programs.emacs.finalPackage}/bin/emacs --daemon
+    Exec=emacs --daemon
     NoDisplay=true
   '';
 
