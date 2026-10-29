@@ -73,7 +73,6 @@ in
     tree
     tldr
     comma                     # launch sandboxed nix programs
-    # brave                   # loaded via module below
     discord
     libreoffice
     texliveFull
@@ -82,7 +81,7 @@ in
     superfile                 # amodern Ranger-like
     # perlPackages.LinuxInotify2   # Allows latexmk to use inotify to check files faster
     # dropbox                 # managing locally
-    albert                  # switching to cosmic-launcher
+    # albert                  # managing locally
     omnissa-horizon-client
     # papers                    # Gnome Papers PDF viewer
     ## Python
@@ -107,7 +106,7 @@ in
     ## Fonts
     nerd-fonts.jetbrains-mono  # JetBrains Mono
     nerd-fonts.symbols-only
-    fira                       # Fira Sans
+    # fira                       # Fira Sans -- Pop comes with its own version
     symbola
     source-sans
   ];
@@ -194,6 +193,7 @@ in
   '';
 
   # Adding a user desktop file that makes emacsclient clickable on the dock, rather than it running a new emacs instance entirely
+  # TODO not working
   xdg.dataFile."applications/emacs.desktop".text = ''
                                                  [Desktop Entry]
                                                    Type=Application
