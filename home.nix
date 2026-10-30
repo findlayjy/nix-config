@@ -261,6 +261,12 @@ in
     # The real binary comes from Pop!_OS.
     package = pkgs.runCommand "thunderbird-system-0" { } "mkdir $out";
     profiles.main.isDefault = true;
+    settings = {
+      # Tell Thunderbird to load userChrome.css / userContent.css
+      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+    };
+    profiles.main.userContent = '' @media (prefers-color-scheme: dark) {
+    blockquote[type="cite"], blockquote[type="cite"] * { color: inherit
+    !important; background-color: transparent !important; } } '';
   };
-
 }
