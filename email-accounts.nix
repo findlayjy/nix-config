@@ -2,7 +2,9 @@
 
 { config, pkgs, lib, ... }:
 {
-  # UiO account
+  ####################################################
+  ## UiO account
+  ####################################################
   accounts.email.accounts.UiO = {
     primary  = true;
     address  = "jamief@uio.no";
@@ -35,4 +37,33 @@
       enable   = true;
     };
   };
+
+  ####################################################
+  ## jy.findlay@gmail.com
+  ####################################################
+  accounts.email.accounts.jyfindlay = {
+    flavor   = "gmail.com";
+    address  = "jy.findlay@gmail.com";
+    realName = "Jamie Findlay";
+
+    imap.authentication = "xoauth2";
+    smtp.authentication = "xoauth2";
+
+    thunderbird.enable = true;
+  };
+
+  ####################################################
+  ## findlayjy@gmail.com
+  ####################################################
+  accounts.email.accounts.findlayjy = {
+    flavor   = "gmail.com";
+    address  = "findlayjy@gmail.com";
+    realName = "Jamie Findlay";
+
+    imap.authentication = "xoauth2";
+    smtp.authentication = "xoauth2";
+
+    thunderbird.enable = true;
+  };
+
 }
