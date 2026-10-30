@@ -1,12 +1,17 @@
+# Email address configurations for Thunderbird
+
 { config, pkgs, lib, ... }:
 {
+  ####################################################
+  ## UiO account
+  ####################################################
   accounts.email.accounts.UiO = {
     primary  = true;
     address  = "jamief@uio.no";
     realName = "Jamie Y. Findlay";
     userName = "jamief@uio.no";
 
-    # INCOMING SERVER
+    # Incoming server
     imap = {
       host = "outlook.office365.com";
       port = 143;
@@ -14,9 +19,10 @@
         enable      = true;
         useStartTls = true;   # "STARTTLS" rather than SSL/TLS
       };
+      authentication = "xoauth2";
     };
 
-    # OUTGOING SERVER
+    # Outgoing server
     smtp = {
       host = "smtp.office365.com";
       port = 587;
@@ -24,17 +30,40 @@
         enable      = true;
         useStartTls = true;
       };
+      authentication = "xoauth2";
     };
 
     thunderbird = {
       enable   = true;
-      profiles = [ "main" ];
-
-      # Authentication method: OAuth2 (for both servers)
-      settings = id: {
-        "mail.server.server_${id}.authMethod"   = 10;
-        "mail.smtpserver.smtp_${id}.authMethod" = 10;
-      };
     };
   };
+
+  ####################################################
+  ## jy.findlay@gmail.com
+  ####################################################
+  accounts.email.accounts.jyfindlay = {
+    flavor   = "gmail.com";
+    address  = "jy.findlay@gmail.com";
+    realName = "Jamie Findlay";
+
+    imap.authentication = "xoauth2";
+    smtp.authentication = "xoauth2";
+
+    thunderbird.enable = true;
+  };
+
+  ####################################################
+  ## findlayjy@gmail.com
+  ####################################################
+  accounts.email.accounts.findlayjy = {
+    flavor   = "gmail.com";
+    address  = "findlayjy@gmail.com";
+    realName = "Jamie Findlay";
+
+    imap.authentication = "xoauth2";
+    smtp.authentication = "xoauth2";
+
+    thunderbird.enable = true;
+  };
+
 }
