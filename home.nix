@@ -6,6 +6,7 @@ in
 {
   imports = [
 	  spicetify-nix.homeManagerModules.default
+    ./modules/email-accounts.nix
   ];
 
   # Install Home Manager
@@ -74,7 +75,8 @@ in
     tldr
     comma                     # launch sandboxed nix programs
     discord
-    libreoffice
+    poppler-utils
+    # libreoffice             # ships with Pop!_OS
     texliveFull
     fastfetch
     pdfpc                     # presenter mode/toolkit for PDF slides
@@ -246,4 +248,19 @@ in
       };
     };
   };
+
+
+  # Thunderbird
+  systemd.user.sessionVariables = {
+    MOZ_LEGACY_PROFILES = "1";
+  };
+
+  programs.thunderbird = {
+    enable = true;
+    # Empty stub: satisfies the option, installs nothing.
+    # The real binary comes from Pop!_OS.
+    package = pkgs.runCommand "thunderbird-system-0" { } "mkdir $out";
+    profiles.main.isDefault = true;
+  };
+
 }
