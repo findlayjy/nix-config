@@ -2,6 +2,14 @@
 
 { config, pkgs, lib, ... }:
 {
+  ## Set accounts order
+  programs.thunderbird.profiles.main.accountsOrder = [
+    "UiO"
+    "jyfindlay"
+    "findlayjy"
+    "account1"   # Local Folders
+  ];
+
   ####################################################
   ## UiO account
   ####################################################
