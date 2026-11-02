@@ -37,6 +37,7 @@ in
     ".local/share/whatsapp/whatsapp.ico".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/Dropbox/appimages/whatsapp/whatsapp.ico;
   };
 
+  # Set default apps (doesn't use xdg.mimeApps since then home-manager owns the file and any other apps installed outside of nix that make changes are problematic)
   home.activation.setDefaultApps = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
   run ${pkgs.xdg-utils}/bin/xdg-mime default brave-browser.desktop \
     x-scheme-handler/http x-scheme-handler/https text/html x-scheme-handler/chrome application/x-extension-htm application/x-extension-html application/x-extension-shtml application/xhtml+xml application/x-extension-xhtml application/x-extension-xht x-scheme-handler/about
@@ -46,27 +47,19 @@ in
     text/plain text/x-tex text/x-bibtex
     '';
 
-  # # Setting some default applications
-  # xdg.mimeApps = {
-  #   enable = true;
-  #   defaultApplications = {
-  #     # Browser
-  #     "text/html" = "brave-browser.desktop";
-  #     "x-scheme-handler/http" = "brave-browser.desktop";
-  #     "x-scheme-handler/https" = "brave-browser.desktop";
-  #     "x-scheme-handler/chrome" = "brave-browser.desktop";
-  #     "application/x-extension-htm" = "brave-browser.desktop";
-  #     "application/x-extension-html" = "brave-browser.desktop";
-  #     "application/x-extension-shtml" = "brave-browser.desktop";
-  #     "application/xhtml+xml" = "brave-browser.desktop";
-  #     "application/x-extension-xhtml" = "brave-browser.desktop";
-  #     "application/x-extension-xht" = "brave-browser.desktop";
-  #     "x-scheme-handler/about" = "brave-browser.desktop";
-  #     "text/plain" = "emacsclient.desktop";
-  #     "text/x-tex" = "emacsclient.desktop";
-  #     "text/x-bibtex" = "emacsclient.desktop";
-  #   };
-  # };
+  # Set the user dirs so that file managers don't show e.g. "videos" or whatever other pointless dirs we don't want
+  xdg.userDirs = {
+    enable    = true;
+    desktop   = "$HOME/Desktop";
+    download  = "$HOME/Downloads";
+    # Unwanted ones: point them at $HOME
+    templates   = "$HOME";
+    publicShare = "$HOME";
+    documents   = "$HOME";
+    music       = "$HOME";
+    pictures    = "$HOME";
+    videos      = "$HOME";
+  };
 
   # Allow Home Manager to update the font cache
   fonts.fontconfig.enable = true;
