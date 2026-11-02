@@ -46,6 +46,7 @@
       settings = id: {
         "mail.identity.id_${id}.draft_folder" = "imap://jamief%40uio.no@outlook.office365.com/Kladd";
         "mail.identity.id_${id}.drafts_folder_picker_mode" = "1";
+      };
     };
   };
 
