@@ -86,7 +86,7 @@ in
     # perlPackages.LinuxInotify2   # Allows latexmk to use inotify to check files faster
     # dropbox                 # managing locally
     # albert                  # managing locally
-    omnissa-horizon-client
+    # omnissa-horizon-client
     # papers                    # Gnome Papers PDF viewer
     ## Python
     python3
