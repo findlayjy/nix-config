@@ -76,5 +76,4 @@
 
     thunderbird.enable = true;
   };
-
 }
