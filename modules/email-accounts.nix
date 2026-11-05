@@ -48,6 +48,7 @@
         "mail.identity.id_${id}.drafts_folder_picker_mode" = "1";
     };
   };
+};
 
   ####################################################
   ## jy.findlay@gmail.com
