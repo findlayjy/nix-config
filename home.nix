@@ -30,7 +30,7 @@ in
     ".dir_colors".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.dir_colors;
     ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/alacritty;
     ".config/cosmic".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/cosmic; # Config for COSMIC DE – comment out/delete if using another DE
-    ### AppImages ###
+    ### AppImages ### TODO: these can't be on Dropbox otherwise i have to sync Dropbox before anything else!
     ".local/bin/whatsapp.AppImage".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/Dropbox/appimages/whatsapp/whatsapp.AppImage;
     ".local/share/whatsapp/whatsapp.ico".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/Dropbox/appimages/whatsapp/whatsapp.ico;
   };
@@ -60,7 +60,7 @@ in
   ## USER PACKAGES
   # List of packages without their own modules or where I'm not using the config options of the module
   home.packages = with pkgs; [
-	  zsh
+    zsh
     vim
     alacritty
     xclip
@@ -160,4 +160,5 @@ in
       };
     };
   };
+
 }
