@@ -30,8 +30,8 @@
     in
     {
       homeConfigurations = {
-        laptop = mkHome { };
-        pc = mkHome { nvidia = true; };
+        "jamief@uio-laptop" = mkHome { };
+        "jamief@pc" = mkHome { nvidia = true; };
       };
     };
 }

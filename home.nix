@@ -6,6 +6,7 @@ in
 {
   imports = [
 	  spicetify-nix.homeManagerModules.default
+    ./modules/email-accounts.nix
   ];
 
   # Install Home Manager
@@ -29,6 +30,7 @@ in
     ".latexmkrc".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.latexmkrc;
     ".dir_colors".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.dir_colors;
     ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/alacritty;
+    ".config/albert".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/albert;
     ".config/cosmic".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/.dotfiles/.config/cosmic; # Config for COSMIC DE – comment out/delete if using another DE
     ### AppImages ### TODO: these can't be on Dropbox otherwise i have to sync Dropbox before anything else!
     ".local/bin/whatsapp.AppImage".source = config.lib.file.mkOutOfStoreSymlink /home/jamief/Dropbox/appimages/whatsapp/whatsapp.AppImage;
@@ -51,6 +53,9 @@ in
       "application/x-extension-xhtml" = "brave-browser.desktop";
       "application/x-extension-xht" = "brave-browser.desktop";
       "x-scheme-handler/about" = "brave-browser.desktop";
+      "text/plain" = "emacsclient.desktop";
+      "text/x-tex" = "emacsclient.desktop";
+      "text/x-bibtex" = "emacsclient.desktop";
     };
   };
 
@@ -68,10 +73,19 @@ in
     wl-clipboard
     tree
     tldr
-    #brave
+    comma                     # launch sandboxed nix programs
     discord
-    libreoffice
-    # texliveFull
+    poppler-utils
+    # libreoffice             # ships with Pop!_OS
+    texliveFull
+    fastfetch
+    pdfpc                     # presenter mode/toolkit for PDF slides
+    superfile                 # amodern Ranger-like
+    # perlPackages.LinuxInotify2   # Allows latexmk to use inotify to check files faster
+    # dropbox                 # managing locally
+    # albert                  # managing locally
+    omnissa-horizon-client
+    # papers                    # Gnome Papers PDF viewer
     ## Python
     python3
     python3Packages.isort
@@ -83,18 +97,18 @@ in
     haskellPackages.hoogle
     haskell-language-server
     ## Doom emacs requirements
-    emacs-pgtk
+    emacs-pgtk                 # native Wayland version
     fd
     ripgrep
     pandoc                     # for markdown compiling
     shellcheck
-    grip
+    #grip                      # deprecated
     nixfmt                     # formatting for nix
     zig                        # for building ghostel
     ## Fonts
     nerd-fonts.jetbrains-mono  # JetBrains Mono
     nerd-fonts.symbols-only
-    fira                       # Fira Sans
+    # fira                       # Fira Sans -- Pop comes with its own version
     symbola
     source-sans
   ];
@@ -121,17 +135,91 @@ in
   };
 
   # Emacs
-  services.emacs = {
+  # programs.emacs = {
+  #   enable = true;
+  #   package = pkgs.emacs-pgtk;
+  # };
+  # services.emacs = {
+  #   enable = true;
+  #   package = pkgs.emacs-pgtk;
+  #   defaultEditor = true;
+  # };
+
+  home.sessionVariables = {
+    EDITOR = "emacsclient -t -a ''";
+    VISUAL = "emacsclient -c -a ''";
+  };
+
+  # # Temporary desktop entry because of COSMIC bug not throwing away %F: https://github.com/pop-os/cosmic-launcher/issues/461
+  # xdg.desktopEntries.emacsclient = {
+  #   name = "Emacs (Client)";
+  #   genericName = "Text Editor";
+  #   comment = "Edit text";
+  #   exec = "emacsclient --alternate-editor= --create-frame --no-wait %F";
+  #   icon = "emacs";
+  #   terminal = false;
+  #   categories = [ "Development" "TextEditor" ];
+  #   startupNotify = true;
+  #   settings = {
+  #     StartupWMClass = "Emacs";
+  #     Keywords = "emacsclient;";
+  #   };
+  #   mimeType = [
+  #     "text/english"
+  #     "text/plain"
+  #     "text/x-makefile"
+  #     "text/x-c++hdr"
+  #     "text/x-c++src"
+  #     "text/x-chdr"
+  #     "text/x-csrc"
+  #     "text/x-java"
+  #     "text/x-moc"
+  #     "text/x-pascal"
+  #     "text/x-tcl"
+  #     "text/x-tex"
+  #     "application/x-shellscript"
+  #     "text/x-c"
+  #     "text/x-c++"
+  #     "x-scheme-handler/org-protocol"
+  #   ];
+  # };
+
+  # Starting the emacs daemon on login, rather than using a systemd service, which seems to cause problems with window styling.
+  # TODO check this is still the case now we are properly importing home-manager session variables
+  xdg.configFile."autostart/emacs-daemon.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=Emacs daemon
+    Icon=emacs
+    Exec=emacs --daemon
+    NoDisplay=true
+  '';
+
+  # Adding a user desktop file that makes emacsclient clickable on the dock and keeps emacs windows under it
+  xdg.dataFile."applications/emacs.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=Emacs (Client)
+    Icon=emacs
+    Exec=emacsclient -c -a "" %F
+    Terminal=false
+    Categories=Development;TextEditor;
+    MimeType=text/plain;
+    StartupWMClass=Emacs
+'';
+
+  # nix helper
+  programs.nh = {
     enable = true;
-    package = pkgs.emacs-pgtk;
-    defaultEditor = true;
+    flake = "/home/jamief/nix-config/";
+    clean.enable = true;
   };
 
   # Firefox
   programs.firefox.enable = true;
 
   # Install Dropbox and run the daemon
-  services.dropbox.enable = true;
+  # services.dropbox.enable = true;
 
   # Install and prettify Spotify
   programs.spicetify = {
@@ -140,7 +228,7 @@ in
       shuffle
       hidePodcasts
       popupLyrics
-      betterGenres
+      #betterGenres # deprecated?
     ];
     theme = spicePkgs.themes.sleek;
     colorScheme = "Nord";
@@ -161,4 +249,23 @@ in
     };
   };
 
+  # Thunderbird
+  systemd.user.sessionVariables = {
+    MOZ_LEGACY_PROFILES = "1";
+  };
+
+  programs.thunderbird = {
+    enable = true;
+    # Empty stub: satisfies the option, installs nothing.
+    # The real binary comes from Pop!_OS.
+    package = pkgs.runCommand "thunderbird-system-0" { } "mkdir $out";
+    profiles.main.isDefault = true;
+    settings = {
+      # Tell Thunderbird to load userChrome.css / userContent.css
+      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+    };
+    profiles.main.userContent = '' @media (prefers-color-scheme: dark) {
+    blockquote[type="cite"], blockquote[type="cite"] * { color: inherit
+    !important; background-color: transparent !important; } } '';
+  };
 }
